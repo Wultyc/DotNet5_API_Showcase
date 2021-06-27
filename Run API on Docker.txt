@@ -1,0 +1,5 @@
+#Build the Docker Container
+docker build -t dotnet5_api_showcase .
+
+#Run the container
+docker run --rm -p 8080:80 dotnet5_api_showcase
