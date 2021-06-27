@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNet5_API_Showcase.DTOs;
+using DotNet5_API_Showcase.Interface.Services;
 
 namespace DotNet5_API_Showcase.Controllers
 {
@@ -15,17 +16,18 @@ namespace DotNet5_API_Showcase.Controllers
     {
 
         private IUserRepository userRepository;
+        private IUsersService usersService;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUsersService usersService)
         {
-            this.userRepository = userRepository;
+            this.usersService = usersService;
         }
 
         // GET /api/users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserResponse>>> GetUsers()
         {
-            var returnList = (await this.userRepository.GetUsers()).Select(user => user.AsDto());
+            var returnList = (await this.usersService.GetUsers()).Select(user => user.AsDto());
             return Ok(returnList);
         }
 
@@ -38,7 +40,7 @@ namespace DotNet5_API_Showcase.Controllers
             try { newUser = user.AsModel(); }
             catch { return BadRequest(); }
 
-            User returnUser = await this.userRepository.CreateUser(newUser);
+            User returnUser = await this.usersService.CreateUser(newUser);
 
             return Ok(returnUser.AsDto());
         }
@@ -47,7 +49,7 @@ namespace DotNet5_API_Showcase.Controllers
         [HttpGet("{userId}")]
         public async Task<ActionResult<UserResponse>> GetUserById(Guid userId)
         {
-            User returnUser = await this.userRepository.GetUserById(userId);
+            User returnUser = await this.usersService.GetUserById(userId);
 
             if (returnUser is null) return NotFound();
 
@@ -63,7 +65,7 @@ namespace DotNet5_API_Showcase.Controllers
             try { newUser = user.AsModel(userId); }
             catch { return BadRequest(); }
 
-            User returnUser = await this.userRepository.UpdateUser(userId, newUser);
+            User returnUser = await usersService.UpdateUser(newUser);
 
             return Ok(returnUser.AsDto());
         }
@@ -73,7 +75,7 @@ namespace DotNet5_API_Showcase.Controllers
         public async Task<ActionResult<UserResponse>> DeleteUser(Guid userId)
         {
 
-            await this.userRepository.DeleteUser(userId);
+            await this.usersService.DeleteUser(userId);
 
             return Ok(null);
         }
