@@ -29,6 +29,20 @@ namespace DotNet5_API_Showcase.Controllers
             return Ok(returnList);
         }
 
+        // POST /api/users/
+        [HttpPost]
+        public async Task<ActionResult<UserResponse>> CreateUser(UserRequestCreateUpdate user)
+        {
+            User newUser;
+
+            try { newUser = user.AsModel(); }
+            catch { return BadRequest(); }
+
+            User returnUser = await this.userRepository.CreateUser(newUser);
+
+            return Ok(returnUser.AsDto());
+        }
+
         // GET /api/users/{id}
         [HttpGet("{userId}")]
         public async Task<ActionResult<UserResponse>> GetUserById(Guid userId)
