@@ -29,7 +29,8 @@ namespace DotNet5_API_Showcase.Repositories.InMemoryDB
 
         public async Task<User> GetUserById(Guid userId)
         {
-            throw new NotImplementedException();
+            User returnUser = this.userList.Find(user => user.userId == userId);
+            return await Task.FromResult( returnUser );
         }
 
         public async Task<IEnumerable<User>> GetUsers()

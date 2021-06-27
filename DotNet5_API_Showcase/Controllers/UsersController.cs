@@ -19,10 +19,23 @@ namespace DotNet5_API_Showcase.Controllers
         {
             this.userRepository = userRepository;
         }
+
+        // GET /api/users
         [HttpGet]
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await this.userRepository.GetUsers();
+            return Ok(await this.userRepository.GetUsers());
+        }
+
+        // GET /api/users/{id}
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<User>> GetUserById(Guid userId)
+        {
+            User returnUser = await this.userRepository.GetUserById(userId);
+
+            if (returnUser is null) return NotFound();
+
+            return Ok(returnUser);
         }
     }
 }
