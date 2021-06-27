@@ -10,8 +10,8 @@ namespace DotNet5_API_Showcase.Repositories.Interface
     {
         public Task<IEnumerable<User>> GetUsers();
         public Task<User> GetUserById(Guid userId);
-        public Task<User> CreateUser();
-        public Task<User> UpdateUser(Guid userId);
+        public Task<User> CreateUser(User user);
+        public Task<User> UpdateUser(Guid userId, User user);
         public Task DeleteUser(Guid userId);
     }
 }

@@ -17,12 +17,13 @@ namespace DotNet5_API_Showcase.Repositories.InMemoryDB
             new User { userId = Guid.NewGuid(), name = "Bella", birthDate = new DateTime(1996, 08, 30, 0, 0, 0, DateTimeKind.Local), email = "bella@example.com" }
         };
 
-        public async Task<User> CreateUser()
+        public async Task<User> CreateUser(User user)
         {
-            throw new NotImplementedException();
+            this.userList.Add(user);
+            return await Task.FromResult(user);
         }
 
-        public async Task DeleteUser(Guid userId)
+        public Task DeleteUser(Guid userId)
         {
             throw new NotImplementedException();
         }
@@ -38,7 +39,7 @@ namespace DotNet5_API_Showcase.Repositories.InMemoryDB
             return await Task.FromResult(this.userList);
         }
 
-        public async Task<User> UpdateUser(Guid userId)
+        public Task<User> UpdateUser(Guid userId, User user)
         {
             throw new NotImplementedException();
         }
