@@ -65,6 +65,13 @@ public static User AsModel(this UserRequestCreateUpdate user, Guid userId)
     };
 }
 ```
+
+On the controller, to run those methods is just needed to call it in the context of the object.
+Below is an example of a conversion from Model to DTO
+```C#
+return Ok(returnUser.AsDto());
+```
+
 ### Class types
 Both DTOs and Models use `record type` classes due it's particularities for data objects.
 
