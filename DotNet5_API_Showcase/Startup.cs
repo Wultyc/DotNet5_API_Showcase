@@ -1,3 +1,5 @@
+using DotNet5_API_Showcase.Repositories.InMemoryDB;
+using DotNet5_API_Showcase.Repositories.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,8 @@ namespace DotNet5_API_Showcase
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Inject Dependencies
+            services.AddSingleton<IUserRepository, UserRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
