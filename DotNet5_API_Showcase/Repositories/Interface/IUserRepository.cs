@@ -6,7 +6,7 @@ using DotNet5_API_Showcase.Models;
 
 namespace DotNet5_API_Showcase.Repositories.Interface
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         public Task<IEnumerable<User>> GetUsers();
         public Task<User> GetUserById(Guid userId);
