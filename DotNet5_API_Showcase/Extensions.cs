@@ -9,9 +9,9 @@ namespace DotNet5_API_Showcase
 {
     public static class Extensions
     {
-        public static User_Response AsDto(this User user)
+        public static UserResponse AsDto(this User user)
         {
-            return new User_Response
+            return new UserResponse
             {
                 userId = user.userId,
                 name = user.name,
