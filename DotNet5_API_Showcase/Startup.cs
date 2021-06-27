@@ -1,5 +1,7 @@
+using DotNet5_API_Showcase.Interface.Services;
 using DotNet5_API_Showcase.Repositories.InMemoryDB;
 using DotNet5_API_Showcase.Repositories.Interface;
+using DotNet5_API_Showcase.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,7 @@ namespace DotNet5_API_Showcase
         {
             //Inject Dependencies
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IUsersService, UsersService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
