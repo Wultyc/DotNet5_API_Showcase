@@ -67,5 +67,15 @@ namespace DotNet5_API_Showcase.Controllers
 
             return Ok(returnUser.AsDto());
         }
+
+        // DELETE /api/users/{id}
+        [HttpDelete("{userId}")]
+        public async Task<ActionResult<UserResponse>> DeleteUser(Guid userId)
+        {
+
+            await this.userRepository.DeleteUser(userId);
+
+            return Ok(null);
+        }
     }
 }

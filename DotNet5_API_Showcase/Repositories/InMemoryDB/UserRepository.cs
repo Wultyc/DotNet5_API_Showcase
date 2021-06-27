@@ -23,9 +23,11 @@ namespace DotNet5_API_Showcase.Repositories.InMemoryDB
             return await Task.FromResult(user);
         }
 
-        public Task DeleteUser(Guid userId)
+        public async Task DeleteUser(Guid userId)
         {
-            throw new NotImplementedException();
+            int index = this.userList.FindIndex(user => user.userId == userId);
+            this.userList.RemoveAt(index);
+            return ;
         }
 
         public async Task<User> GetUserById(Guid userId)
