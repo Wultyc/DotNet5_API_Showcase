@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNet5_API_Showcase.DTOs;
 
 namespace DotNet5_API_Showcase.Controllers
 {
@@ -22,20 +23,21 @@ namespace DotNet5_API_Showcase.Controllers
 
         // GET /api/users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserResponse>>> GetUsers()
         {
-            return Ok(await this.userRepository.GetUsers());
+            var returnList = (await this.userRepository.GetUsers()).Select(user => user.AsDto());
+            return Ok(returnList);
         }
 
         // GET /api/users/{id}
         [HttpGet("{userId}")]
-        public async Task<ActionResult<User>> GetUserById(Guid userId)
+        public async Task<ActionResult<UserResponse>> GetUserById(Guid userId)
         {
             User returnUser = await this.userRepository.GetUserById(userId);
 
             if (returnUser is null) return NotFound();
 
-            return Ok(returnUser);
+            return Ok(returnUser.AsDto());
         }
     }
 }
