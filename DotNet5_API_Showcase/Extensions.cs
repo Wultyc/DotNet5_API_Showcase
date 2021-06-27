@@ -22,9 +22,14 @@ namespace DotNet5_API_Showcase
 
         public static User AsModel(this UserRequestCreateUpdate user)
         {
+            return AsModel(user, Guid.NewGuid());
+        }
+
+        public static User AsModel(this UserRequestCreateUpdate user, Guid userId)
+        {
             return new User
             {
-                userId = Guid.NewGuid(),
+                userId = userId,
                 name = user.name,
                 birthDate = new DateTime(user.birthDate.year, user.birthDate.month, user.birthDate.day),
                 email = user.email
