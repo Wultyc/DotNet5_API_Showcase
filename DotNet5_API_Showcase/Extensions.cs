@@ -19,5 +19,16 @@ namespace DotNet5_API_Showcase
                 email = user.email
             };
         }
+
+        public static User AsModel(this UserRequestCreateUpdate user)
+        {
+            return new User
+            {
+                userId = Guid.NewGuid(),
+                name = user.name,
+                birthDate = new DateTime(user.birthDate.year, user.birthDate.month, user.birthDate.day),
+                email = user.email
+            };
+        }
     }
 }
