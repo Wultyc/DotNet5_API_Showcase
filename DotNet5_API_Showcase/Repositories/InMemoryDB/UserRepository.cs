@@ -41,7 +41,11 @@ namespace DotNet5_API_Showcase.Repositories.InMemoryDB
 
         public Task<User> UpdateUser(Guid userId, User user)
         {
-            throw new NotImplementedException();
+            int index = this.userList.FindIndex(user => user.userId == userId);
+
+            this.userList[index] = user;
+
+            return this.GetUserById(userId);
         }
     }
 }

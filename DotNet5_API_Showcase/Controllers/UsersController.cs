@@ -53,5 +53,19 @@ namespace DotNet5_API_Showcase.Controllers
 
             return Ok(returnUser.AsDto());
         }
+
+        // PUT /api/users/{id}
+        [HttpPut("{userId}")]
+        public async Task<ActionResult<UserResponse>> UpdateUser(Guid userId, UserRequestCreateUpdate user)
+        {
+            User newUser;
+
+            try { newUser = user.AsModel(userId); }
+            catch { return BadRequest(); }
+
+            User returnUser = await this.userRepository.UpdateUser(userId, newUser);
+
+            return Ok(returnUser.AsDto());
+        }
     }
 }
