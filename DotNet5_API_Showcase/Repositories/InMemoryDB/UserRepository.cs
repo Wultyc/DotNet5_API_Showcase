@@ -41,13 +41,13 @@ namespace DotNet5_API_Showcase.Repositories.InMemoryDB
             return await Task.FromResult(this.userList);
         }
 
-        public async Task<User> UpdateUser(Guid userId, User user)
+        public async Task<User> UpdateUser(User user)
         {
-            int index = this.userList.FindIndex(user => user.userId == userId);
+            int index = this.userList.FindIndex(itUser => itUser.userId == user.userId);
 
             this.userList[index] = user;
 
-            return await this.GetUserById(userId);
+            return await this.GetUserById(user.userId);
         }
     }
 }
