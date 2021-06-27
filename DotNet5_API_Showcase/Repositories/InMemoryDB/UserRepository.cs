@@ -34,7 +34,7 @@ namespace DotNet5_API_Showcase.Repositories.InMemoryDB
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(this.userList);
         }
 
         public async Task<User> UpdateUser(Guid userId)

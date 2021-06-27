@@ -19,5 +19,10 @@ namespace DotNet5_API_Showcase.Controllers
         {
             this.userRepository = userRepository;
         }
+        [HttpGet]
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await this.userRepository.GetUsers();
+        }
     }
 }
