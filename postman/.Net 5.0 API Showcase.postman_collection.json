@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "0390b56e-19cf-4499-a2db-ad3f0c47e90f",
+		"name": ".Net 5.0 API Showcase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/api/users",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/api/users/1e6192b9-6fde-4308-86f3-c24dcd091284",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"1e6192b9-6fde-4308-86f3-c24dcd091284"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Daniel\",\r\n    \"birthDate\": {\r\n        \"day\": \"05\",\r\n        \"month\": \"07\",\r\n        \"year\":\"1992\"\r\n    },\r\n    \"email\": \"daniel@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/api/users",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Daniel\",\r\n    \"birthDate\": {\r\n        \"day\": \"05\",\r\n        \"month\": \"07\",\r\n        \"year\":\"1982\"\r\n    },\r\n    \"email\": \"daniel@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/api/users/fb4b1aea-0df3-4c08-bbfe-96d85e06a5ab",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"fb4b1aea-0df3-4c08-bbfe-96d85e06a5ab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/api/users/e77d7c40-0df1-4c3e-a5b2-1a20b4b36222",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"e77d7c40-0df1-4c3e-a5b2-1a20b4b36222"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
